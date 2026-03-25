@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!--Head of the Gallary page-->	
+<!--Head of the Login page-->	
 	<head>
 		<title> WatchMovies - Login </title>
 		<!--Thought would center puts writing in the middle of the website-->
@@ -17,17 +17,21 @@
 	</head>
 
 	<body>
-		<script src="name_chec	ker.js"></script>
+		<script src="name_checker.js"></script>
+
+
 		<!--Form to enter name and password if the credtails for website-->
-		<form>
+		<form onsubmit="return validateForm()">
 			<p>Enter UserID and Password</p>
     			<label>User ID:</label>
 				<!--will check name through JavaScript-->
-   			<input type="text" id="UserID" oninput="check_name()"><br><br>
+   				<input type="text" id="UserID" oninput="check_name()"><br><br>
 
     			<label>Password:</label>
 			<!--Password type--> 
-    			<input type="password" id="password"><br><br>
+    			<input type="password" id="password" required>
+				
+				<br><br>
     			<input type="submit">
 		</form>
 		

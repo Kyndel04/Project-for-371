@@ -22,3 +22,30 @@ function check_name() {
     }
 
 }
+
+async function hashPassword(password) {
+    const encoder = new TextEncoder()
+    const data = encoder.encode(password)
+    
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    
+    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function validateForm() {
+    const nameInput = document.getElementById("password").value;
+    
+    //Regex that checks that passowrd has lowercase, uppercase letter, a nummber, a special char and if password meets the length
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,16}$/;
+
+    if (!passwordRegex.test(password)) {//alerts when password is not correct
+        alert("Password must be 8-16 characters, include uppercase, lowercase, and a special character.");
+        return false;
+    }
+
+    const hashedPassword = await hashPassword(password);
+    console.log("Hashed password:", hashedPassword);
+    return true;
+}
+
