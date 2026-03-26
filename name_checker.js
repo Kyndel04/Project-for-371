@@ -23,6 +23,9 @@ function check_name() {
 
 }
 
+
+/*
+Unsure how to immplement this will need look into it
 async function hashPassword(password) {
     const encoder = new TextEncoder()
     const data = encoder.encode(password)
@@ -32,6 +35,7 @@ async function hashPassword(password) {
     
     return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
 }
+*/
 
 async function validateForm() {
     const nameInput = document.getElementById("password").value;
@@ -44,8 +48,8 @@ async function validateForm() {
         return false;
     }
 
-    const hashedPassword = await hashPassword(password);
-    console.log("Hashed password:", hashedPassword);
+    //const hashedPassword = await hashPassword(password);
+    //console.log("Hashed password:", hashedPassword);
     return true;
 }
 
