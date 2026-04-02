@@ -20,5 +20,8 @@
   "homepage": "https://github.com/Kyndel04/Project-for-371#readme",
   "devDependencies": {
     "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "js-sha256": "^0.11.1"
   }
 }
