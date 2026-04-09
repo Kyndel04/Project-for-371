@@ -3,6 +3,29 @@
 <!--Head of the Gallary page-->	
 	<head>
 		<title> WatchMovies - Gallary </title>
+		<style> .modal {
+            display: none; /* Keeps the popup hidden until clicked */
+            position: fixed; 
+            z-index: 1000; /* Makes sure it sits on top of the table */
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8); /* Darkens the background */
+        }
+        .modal-content {
+            background-color: white;
+            margin: 10% auto; /* Centers the box */
+            padding: 20px;
+            width: 600px;
+            border: 2px solid black;
+        }
+        .close-btn {
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }</style>
+
+
 		<!--Inserts the logo into the html websites-->
 		<img src="WatchMovies Logo.png" width="150"><br>
 
@@ -24,7 +47,7 @@
 			<!--Row 1-->
 			<!--For tool tips I just added title to every image and show when hovered over-->
     				<tr>
-       					<td><img src="chainsawmainposter.webp" width="150" title="Chainsawman the movie:Reze Arc"></td>
+       					<td><img src="chainsawmainposter.webp" width="150" title="Chainsawman the movie:Reze Arc" class="movie-poster" data-title="Chainsawman the movie: Reze Arc" data-description="Denji and Reze's explosive story continues." data-video="https://www.youtube.com/embed/EPaoHkV0dYw?si=YWt0Wu1bOvGH3qaD&autoplay=1"></td>
 						<td><img src="jjk0.webp" width="150" title="Jujustsu Kaisen 0"></td>
 						<td><img src="arcane-tv-series-poster.avif" width="150" title="Arcane"></td>
 						<td><img src="bsdDeadApple.webp" width="150" title="Bungo Stay Dogs: Dead Apple"></td>
@@ -63,6 +86,18 @@
 			</table>
 
 		</center>
+		<div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2 id="modalTitle">Movie Title</h2>
+            
+            <iframe id="modalVideo" width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            
+            <p id="modalDescription">Movie description will appear here.</p>
+            
+            <button id="likeBtn">Like <span id="likeCount">0</span></button>
+            <button id="dislikeBtn">Dislike <span id="dislikeCount">0</span></button>
+        </div>
 	</body>
 
 
@@ -73,6 +108,58 @@
 		<p>Contact: support@WatchMovies.com | 555-123-4567</p>
     		<p>&copy; WatchMovies</p>
 	</footer>
+	<script>
+        const modal = document.getElementById('movieModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalVideo = document.getElementById('modalVideo');
+        const modalDescription = document.getElementById('modalDescription');
+        
+        const likeBtn = document.getElementById('likeBtn');
+        const dislikeBtn = document.getElementById('dislikeBtn');
+        const likeCount = document.getElementById('likeCount');
+        const dislikeCount = document.getElementById('dislikeCount');
 
+        let likes = 0;
+        let dislikes = 0;
+
+        const posters = document.querySelectorAll('.movie-poster');
+        posters.forEach(poster => {
+            poster.addEventListener('click', function() {
+                modalTitle.innerText = this.getAttribute('data-title');
+                modalDescription.innerText = this.getAttribute('data-description');
+                modalVideo.src = this.getAttribute('data-video');
+                
+                likes = 0; dislikes = 0;
+                likeCount.innerText = likes;
+                dislikeCount.innerText = dislikes;
+
+                modal.style.display = 'block';
+            });
+        });
+
+        function closePopup() {
+            modal.style.display = 'none';
+            modalVideo.src = ""; 
+        }
+
+        closeModal.addEventListener('click', closePopup);
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closePopup();
+            }
+        });
+
+        likeBtn.addEventListener('click', () => {
+            likes++;
+            likeCount.innerText = likes;
+        });
+
+        dislikeBtn.addEventListener('click', () => {
+            dislikes++;
+            dislikeCount.innerText = dislikes;
+        });
+    </script>
 
 </html>
