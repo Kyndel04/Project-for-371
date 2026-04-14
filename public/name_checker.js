@@ -1,55 +1,61 @@
-function check_name() {
+function checkName() {
     const nameInput = document.getElementById("UserID");
     const name_value = nameInput.value;
 
-    // Regular expression that check for the letters in Alphabet upper and lower case
-    const invalid_char_regex = /[^a-zA-Z]/g;
-
     //test if the name contains invalid characters
-    if(invalid_char_regex.test(name_value)) {
-        alert("Invalid name. Please use only alphabetic characters (A-Z, a-z).");
-        
-        //Just so there console message as well as an alert
-        console.log("Name contains invalid characters.");
-
-        //Remove invalid characters from the input field
-        nameInput.value=name_value.replace(invalid_char_regex, "");
-        return false;
+    if (name_value.length > 0 && (name_value.length < 8 || name_value.length > 16)) {
+        console.log("User ID must be between 8 and 16 characters.");
     }
-    else{
-        console.log("Name is valid.");
-        return true;
+    else {
+        console.log("User ID length is valid.");
     }
 
 }
 
 
-/*
-Unsure how to immplement this will need look into it
-async function hashPassword(password) {
-    const encoder = new TextEncoder()
-    const data = encoder.encode(password)
-    
-    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    
-    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-}
-*/
+//Validate the the passwords
+async function validateForm(event) {
+    event.preventDefault(); 
 
-async function validateForm() {
-    const nameInput = document.getElementById("password").value;
-    
-    //Regex that checks that passowrd has lowercase, uppercase letter, a nummber, a special char and if password meets the length
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,16}$/;
+    const usernameInput = document.getElementById("UserID").value;
+    const passwordInput = document.getElementById("password").value;
 
-    if (!passwordRegex.test(password)) {//alerts when password is not correct
-        alert("Password must be 8-16 characters, include uppercase, lowercase, and a special character.");
+    // 1. Frontend Validation: User ID (8-16 characters)
+    if (usernameInput.length < 8 || usernameInput.length > 16) {
+        alert("User ID must be between 8 and 16 characters.");
         return false;
     }
 
-    //const hashedPassword = await hashPassword(password);
-    //console.log("Hashed password:", hashedPassword);
-    return true;
+    // 2. Frontend Validation: Password (Complexity Requirements)
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,16}$/;
+    
+    if (!passwordRegex.test(passwordInput)) {
+        alert("Password must be 8-16 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.");
+        return false; // Stops the login process if the password doesn't meet the rules
+    }
+
+    // 3. Send the data to your Express backend
+    try {
+        const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                username: usernameInput, 
+                password: passwordInput 
+            })
+        });
+
+        // 4. Handle the server's response
+        if (response.ok) {
+            alert("Login successful!");
+            window.location.href = "Gallery.html"; // Redirects them to the movies
+        } else {
+            alert("Invalid User ID or Password.");
+        }
+    } catch (error) {
+        console.error("Error logging in:", error);
+        alert("Server error. Is your Node.js server running?");
+    }
 }
+
 

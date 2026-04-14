@@ -21,11 +21,11 @@
 
 
 		<!--Form to enter name and password if the credtails for website-->
-		<form onsubmit="return validateForm()">
+		<form onsubmit="return validateForm(event)">
 			<p>Enter UserID and Password</p>
     			<label>User ID:</label>
 				<!--will check name through JavaScript-->
-   				<input type="text" id="UserID" oninput="check_name()"><br><br>
+   				<input type="text" id="UserID" oninput="checkName()"><br><br>
 
     			<label>Password:</label>
 			<!--Password type--> 
