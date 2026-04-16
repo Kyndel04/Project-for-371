@@ -14,7 +14,7 @@ app.use(express.static("public"));
 // Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/movies", require("./routes/movies"));
-//app.use("/api/interactions", require("./routes/interactions"));
+app.use("/api/interactions", require("./routes/interactions"));
 
 // MongoDB connection
 mongoose.connect("mongodb://127.0.0.1:27017/watchmovies")
