@@ -3,6 +3,12 @@
 <head>
     <title> WatchMovies - Gallery </title>
     <style> 
+
+        body {
+        background-color: #141414; /* A nice, deep Netflix-style grey/black */
+        color: #ffffff; /* Makes all your text white so it's readable */
+        }
+
         .modal {
             display: none; /* Keeps the popup hidden until clicked */
             position: fixed; 
@@ -12,11 +18,11 @@
             background-color: rgba(0,0,0,0.8); /* Darkens the background */
         }
         .modal-content {
-            background-color: white;
+            background-color: #222222;;
             margin: 10% auto; /* Centers the box */
             padding: 20px;
             width: 600px;
-            border: 2px solid black;
+            border: 2px solid #555;;
         }
         .close-btn {
             float: right;
@@ -29,6 +35,16 @@
             width: 100%;
             max-height: 400px;
             background-color: black;
+        }
+        .tag-box {
+            display: inline-block;
+            background-color: #e50914; /* A nice Netflix red */
+            color: white;
+            padding: 4px 8px;
+            margin-right: 5px;
+            border-radius: 5px; /* Rounds the corners of the box */
+            font-size: 14px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -47,34 +63,34 @@
         <h3> WatchMovies Movies!</h3>
         <table border="1">
             <tr>
-                <td><img src="chainsawmainposter.webp" width="150" data-title="Chainsawman the movie:Reze Arc" class="movie-poster" data-description="Denji and Reze's explosive story continues." data-video="excalibur.mp4"> </td>
-                <td><img src="jjk0.webp" width="150" data-title="Jujustsu Kaisen 0" class="movie-poster" data-description="Yuta Okkotsu marries a 9 year old on Christmas" data-video="excalibur.mp4"></td>
-                <td><img src="arcane-tv-series-poster.avif" width="150" data-title="Arcane" class="movie-poster" data-description="RIP my Isha she got hit by a bazooka" data-video="excalibur.mp4"></td>
-                <td><img src="bsdDeadApple.webp" width="150" data-title="Bungo Stay Dogs: Dead Apple" class="movie-poster" data-description="Idk I didn't watch bungo" data-video="excalibur.mp4"></td>
+                <td><img src="chainsawmainposter.webp" width="150" data-title="Chainsawman the movie:Reze Arc" class="movie-poster" data-description="Denji and Reze's explosive story continues." data-video="movies/chainsawman_trailer.mp4" data-tags="Awesome, cool"> </td>
+                <td><img src="jjk0.webp" width="150" data-title="Jujustsu Kaisen 0" class="movie-poster" data-description="Yuta Okkotsu marries a 9 year old on Christmas" data-video="movies/jjk0.mp4"></td>
+                <td><img src="arcane-tv-series-poster.avif" width="150" data-title="Arcane" class="movie-poster" data-description="Rip my Isha she got hit by a bazooka" data-video="movies/Arcane.mp4"></td>
+                <td><img src="bsdDeadApple.webp" width="150" data-title="Bungo Stay Dogs: Dead Apple" class="movie-poster" data-description="Idk I didn't watch bungo" data-video="movies/bsd_dead_apple.mp4"></td>
             </tr>
             <tr>
-                <td><img src="spiderverse1.webp" width="150" data-title="Into the Spider Verse" class="movie-poster" data-description="Whats up danger or something" data-video="excalibur.mp4"></td>
-                <td><img src="spiderverse2.jpg" width="150" data-title="Across the Spider Verse" class="movie-poster" data-description="It would be cool if this movie had a sequel" data-video="excalibur.mp4"></td>
-                <td><img src="undertheredhood.jpg" width="150" data-title="Batman: Under the Redhood" class="movie-poster" data-description="Batman is cool" data-video="excalibur.mp4"></td>
-                <td><img src="Dark-Knight.jpg" width="150" data-title="The Dark Knight" class="movie-poster" data-description="Im the joker baby" data-video="excalibur.mp4"></td>
+                <td><img src="spiderverse1.webp" width="150" data-title="Into the Spider Verse" class="movie-poster" data-description="Whats up danger or something" data-video="movies/spiderverse.mp4"></td>
+                <td><img src="spiderverse2.jpg" width="150" data-title="Across the Spider Verse" class="movie-poster" data-description="It would be cool if this movie had a sequel" data-video="movies/spiderverse2.mp4"></td>
+                <td><img src="undertheredhood.jpg" width="150" data-title="Batman: Under the Redhood" class="movie-poster" data-description="Batman is cool" data-video="movies/red-hood.mp4"></td>
+                <td><img src="Dark-Knight.jpg" width="150" data-title="The Dark Knight" class="movie-poster" data-description="Im the joker baby" data-video="movies/dark-knight.mp4"></td>
             </tr>
             <tr>
-                <td><img src="darknightrises.webp" width="150" data-title="Dark Knight Rises" class="movie-poster" data-description="Im the bane and I wear a mask" data-video="excalibur.mp4"></td>
-                <td><img src="irongiant.webp" width="150" data-title="Iron Giant" class="movie-poster" data-description="big robot" data-video="excalibur.mp4"></td>
-                <td><img src="howls.webp" width="150" data-title="Howls Moving Castle" class="movie-poster" data-description="he turns into a bird" data-video="excalibur.mp4"></td>
-                <td><img src="The_boy_and_theheron.webp" width="150" data-title="The Boy and the Heron" class="movie-poster" data-description="Myazaki you've done it again" data-video="excalibur.mp4"></td>
+                <td><img src="darknightrises.webp" width="150" data-title="Dark Knight Rises" class="movie-poster" data-description="Im the bane and I wear a mask" data-video="movies/dark-knight-rises.mp4"></td>
+                <td><img src="irongiant.webp" width="150" data-title="Iron Giant" class="movie-poster" data-description="big robot" data-video="movies/iron-giant.mp4"></td>
+                <td><img src="howls.webp" width="150" data-title="Howls Moving Castle" class="movie-poster" data-description="he turns into a bird" data-video="movies/howls.mp4"></td>
+                <td><img src="The_boy_and_theheron.webp" width="150" data-title="The Boy and the Heron" class="movie-poster" data-description="Myazaki you've done it again" data-video="movies/boy-and-heron.mp4"></td>
             </tr>
             <tr>
-                <td><img src="princess_mononoke.webp" width="150" data-title="Princess Mononoke" class="movie-poster" data-description="She so cool" data-video="excalibur.mp4"></td>
-                <td><img src="how-train_your_dragon_1.webp" width="150" data-title="How to Train Your Dragon" class="movie-poster" data-description="toofless" data-video="excalibur.mp4"></td>
-                <td><img src="How-to-Train-Your-Dragon-Poster-2.jpg" width="150" data-title="How to Train Your Dragon 2" class="movie-poster" data-description="toofless the second" data-video="excalibur.mp4"></td>
-                <td><img src="how_train_your_dragon_3.webp" width="150" data-title="How to Train Your Dragon 3" class="movie-poster" data-description="toofless the third ig" data-video="excalibur.mp4"></td>
+                <td><img src="princess_mononoke.webp" width="150" data-title="Princess Mononoke" class="movie-poster" data-description="She so cool" data-video="movies/mononoke.mp4"></td>
+                <td><img src="how-train_your_dragon_1.webp" width="150" data-title="How to Train Your Dragon" class="movie-poster" data-description="toofless" data-video="movies/httyd.mp4"></td>
+                <td><img src="How-to-Train-Your-Dragon-Poster-2.jpg" width="150" data-title="How to Train Your Dragon 2" class="movie-poster" data-description="toofless the second" data-video="movies/httyd2.mp4"></td>
+                <td><img src="how_train_your_dragon_3.webp" width="150" data-title="How to Train Your Dragon 3" class="movie-poster" data-description="toofless the third ig" data-video="movies/httyd3.mp4"></td>
             </tr>
             <tr>
-                <td><img src="maze_runner.webp" width="150" data-title="Maze Runner" class="movie-poster" data-description="Guy wakes up and runs mazes" data-video="excalibur.mp4"></td>
-                <td><img src="scorch_trails.webp" width="150" data-title="Maze Runner: Scorch Trails" class="movie-poster" data-description="guy wakes up and doesn't run mazes" data-video="excalibur.mp4"></td>
-                <td><img src="death_cure.jpg" width="150" data-title="Maze Runner: Death Cure" class="movie-poster" data-description="guy doesnt wake up" data-video="excalibur.mp4"></td>
-                <td><img src="jujutsu-kaisen-execution.jpg" width="150" data-title="Jujutsu Kaisen Execution" class="movie-poster" data-description="choso ball spin" data-video="excalibur.mp4"></td>
+                <td><img src="maze_runner.webp" width="150" data-title="Maze Runner" class="movie-poster" data-description="Guy wakes up and runs mazes" data-video="movies/maze-runner.mp4"></td>
+                <td><img src="scorch_trails.webp" width="150" data-title="Maze Runner: Scorch Trails" class="movie-poster" data-description="guy wakes up and doesn't run mazes" data-video="movies/scorch-trials.mp4"></td>
+                <td><img src="death_cure.jpg" width="150" data-title="Maze Runner: Death Cure" class="movie-poster" data-description="guy doesnt wake up" data-video="movies/death-cure.mp4"></td>
+                <td><img src="jujutsu-kaisen-execution.jpg" width="150" data-title="Jujutsu Kaisen Execution" class="movie-poster" data-description="choso ball spin" data-video="movies/culling-games.mp4"></td>
             </tr>
         </table>
     </center>
@@ -89,9 +105,14 @@
             </video>
             
             <p id="modalDescription">Movie description will appear here.</p>
+
+            <p><strong>Views: </strong><span id="viewCount">0</span></p>
+
+            <p><strong> Tags: </strong><span id="modalTags">None</span></p>
             
             <button id="likeBtn">Like <span id="likeCount">0</span></button>
             <button id="dislikeBtn">Dislike <span id="dislikeCount">0</span></button>
+
         </div>
     </div>
 
@@ -103,7 +124,7 @@
         </center>
     </footer>
 
-    <script src="movie_popup.js"> </script>
-
+    <script src="movie_popup.js"></script>
+    
 </body>
 </html>
