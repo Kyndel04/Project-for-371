@@ -24,6 +24,18 @@ const seedUsers = async () => {
                 username: "viewerUser89", 
                 password: "Password!2",   
                 role: "viewer"
+            },
+            {
+                fullName:"Content Editor",
+                username: "contentEditor45",
+                password: "Password!3",
+                role: "content editor"
+            },
+            {
+                fullName: "Marketing Manager",
+                username: "marketingManager",
+                password: "Password!4", 
+                role: "marketing manager"
             }
         ];
 
