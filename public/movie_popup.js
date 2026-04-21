@@ -8,10 +8,10 @@ const modal = document.getElementById('movieModal');
         const dislikeBtn = document.getElementById('dislikeBtn');
         const likeCount = document.getElementById('likeCount');
         const dislikeCount = document.getElementById('dislikeCount');
+        const viewCount = document.getElementById('viewCount');
 
         let likes = 0;
         let dislikes = 0;
-        let views =0
 
         const posters = document.querySelectorAll('.movie-poster');
         posters.forEach(poster => {
@@ -24,19 +24,27 @@ const modal = document.getElementById('movieModal');
                 // Set the video source to the local file
                 modalVideo.src = this.getAttribute('data-video');
 
+                recordAnalytics('view', title);
+
                 try {
                     const response = await fetch(`/api/interactions/${encodeURIComponent(title)}`);
                     if (response.ok) {
                         const data = await response.json();
                         likes = data.likes;       // Use the database numbers
                         dislikes = data.dislikes; 
+
+                        // Add 1 to the database views to account for the view that just happened right now
+                        viewCount.innerText = data.views + 1;
                     } else {
                         likes = 0; dislikes = 0;  // Fallback to 0 if movie has no history
+                        viewCount.innerText = 1;
                     }
                 }
                 catch (error) {
                     console.error("Error loading previous counts", error);
-                    likes = 0; dislikes = 0;
+                    likes = 0;
+                    dislikes = 0;
+                    viewCount.innerText = 1;
                 }
                 
                 likeCount.innerText = likes;
