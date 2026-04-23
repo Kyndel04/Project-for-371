@@ -1,5 +1,7 @@
 # Project-for-371
 
+Netflix-like video viewing website. Developed for CS 371 class.
+
 ## How to run
 1. run npm install
 2. run node seed.js
