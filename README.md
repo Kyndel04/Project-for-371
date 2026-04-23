@@ -7,11 +7,11 @@
 4. in a browser window, go to "hhtp://localhost:3000"
 
 ## Users and passwords
-### admin
+### Admin
 username: adminUser123  
 password: Password!1
 
-### Test viewer
+### Test Viewer
 username: vieweruser89  
 password: Password!2
 
