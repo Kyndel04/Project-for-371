@@ -6,7 +6,7 @@ Netflix-like video viewing website. Developed for CS 371 class.
 1. run npm install
 2. run node seed.js
 3. run node server.js
-4. in a browser window, go to "hhtp://localhost:3000"
+4. in a browser window, go to "http://localhost:3000"
 
 ## Users and passwords
 ### Admin
