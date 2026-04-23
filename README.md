@@ -1,3 +1,9 @@
 # Project-for-371
+
+## How to run
+1. run npm install
+2. run node seed.js
+3. run node server.js
+4. in a browser window, go to "hhtp://localhost:3000"
+
 Project for 371 Netflix like website 
-Website might come handy for SHA256 library https://www.npmjs.com/package/js-sha256 
