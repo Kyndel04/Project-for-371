@@ -8,21 +8,17 @@
 
 ## Users and passwords
 ### admin
-username: adminUser123
+username: adminUser123  
 password: Password!1
 
 ### Test viewer
-username: vieweruser89
+username: vieweruser89  
 password: Password!2
 
 ### Content Editor
-username: contentEditor45
+username: contentEditor45  
 password: Password!3
 
 ### Marketing Manager
-username: marketingManager
+username: marketingManager  
 password: Password!4
-
-
-
-Project for 371 Netflix like website 
