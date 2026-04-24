@@ -14,7 +14,7 @@ username: adminUser123
 password: Password!1
 
 ### Test Viewer
-username: vieweruser89  
+username: viewerUser89  
 password: Password!2
 
 ### Content Editor
