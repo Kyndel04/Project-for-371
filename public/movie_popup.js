@@ -14,6 +14,8 @@ const dislikeCount = document.getElementById('dislikeCount');
 const viewCount = document.getElementById('viewCount'); 
 const commentInput = document.getElementById('commentInput');
 const addCommentBtn = document.getElementById('addCommentBtn');
+const commentContainer = document.getElementById('commentContainer');
+const commentSection = document.getElementById('commentSection');
 
 
 let likes = 0;
@@ -63,7 +65,16 @@ if (userRole === 'content editor' && document.getElementById('editor-panel')) {
     document.getElementById('editor-panel').style.display = 'block';
 }
 
-if (userRole !== 'marketing manager') {
+
+
+// 1. If the user is a VIEWER, completely hide the entire comment section
+if (userRole === 'viewer') {
+    if (commentContainer) {
+        commentContainer.style.display = 'none';
+    }
+} 
+// 2. If the user is a CONTENT EDITOR, let them see comments, but hide the "Post" tools
+else if (userRole !== 'marketing manager') {
     if (commentInput) {
         commentInput.style.display = 'none';
     }
@@ -71,13 +82,12 @@ if (userRole !== 'marketing manager') {
         addCommentBtn.style.display = 'none';
     }
     
-    // Optional: Add a message telling them why they can't comment
-    const commentSection = document.getElementById('commentSection');
+    // Optional: Add a message telling them why they can't post
     if (commentSection) {
         const warningMessage = document.createElement('p');
         warningMessage.style.color = '#aaa';
         warningMessage.style.fontStyle = 'italic';
-        warningMessage.innerText = '(Only Marketing Managers can leave comments.)';
+        warningMessage.innerText = '(Only Marketing Managers can post new comments.)';
         commentSection.parentElement.appendChild(warningMessage);
     }
 }
@@ -278,7 +288,6 @@ if (submitMovieBtn) {
 // ==========================================
 // COMMENTS LOGIC (INTERACTIONS DATABASE)
 // ==========================================
-const commentSection = document.getElementById('commentSection');
 
 // Function to pull comments from the Interactions database
 async function loadComments(movieTitle) {
