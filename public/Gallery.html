@@ -48,6 +48,16 @@
             font-size: 14px;
             font-weight: bold;
         }
+
+        #movie-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 equal columns */
+            gap: 25px; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 20px;
+            justify-items: center; 
+        }
     </style>
 </head>
     
@@ -72,7 +82,7 @@
            <button id="submitMovieBtn">Add Movie</button>
          </div>
         <br>
-        <div id="movie-container" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;"></div>
+        <div id="movie-container"></div>
     </center>
 
     <div id="movieModal" class="modal">

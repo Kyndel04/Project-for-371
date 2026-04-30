@@ -12,6 +12,9 @@ const dislikeBtn = document.getElementById('dislikeBtn');
 const likeCount = document.getElementById('likeCount');
 const dislikeCount = document.getElementById('dislikeCount');
 const viewCount = document.getElementById('viewCount'); 
+const commentInput = document.getElementById('commentInput');
+const addCommentBtn = document.getElementById('addCommentBtn');
+
 
 let likes = 0;
 let dislikes = 0;
@@ -58,6 +61,25 @@ const userRole = sessionStorage.getItem('userRole'); // Gets the user's role fro
 // Show the editor panel immediately if they are a content editor
 if (userRole === 'content editor' && document.getElementById('editor-panel')) {
     document.getElementById('editor-panel').style.display = 'block';
+}
+
+if (userRole !== 'marketing manager') {
+    if (commentInput) {
+        commentInput.style.display = 'none';
+    }
+    if (addCommentBtn) {
+        addCommentBtn.style.display = 'none';
+    }
+    
+    // Optional: Add a message telling them why they can't comment
+    const commentSection = document.getElementById('commentSection');
+    if (commentSection) {
+        const warningMessage = document.createElement('p');
+        warningMessage.style.color = '#aaa';
+        warningMessage.style.fontStyle = 'italic';
+        warningMessage.innerText = '(Only Marketing Managers can leave comments.)';
+        commentSection.parentElement.appendChild(warningMessage);
+    }
 }
 
 // Fetch movies from DB and build the gallery visually
@@ -107,6 +129,7 @@ async function loadGallery() {
                 
                 likeCount.innerText = likes; 
                 dislikeCount.innerText = dislikes;
+                loadComments(movie.title);
                 
                 // Show the modal
                 modal.style.display = 'block';
@@ -248,6 +271,76 @@ if (submitMovieBtn) {
             }
         } catch (error) {
             console.error("Error saving movie:", error);
+        }
+    });
+}
+
+// ==========================================
+// COMMENTS LOGIC (INTERACTIONS DATABASE)
+// ==========================================
+const commentSection = document.getElementById('commentSection');
+
+// Function to pull comments from the Interactions database
+async function loadComments(movieTitle) {
+    if (!commentSection) return;
+    commentSection.innerHTML = ''; 
+    
+    try {
+        // Updated URL to point to interactions
+        const response = await fetch(`/api/interactions/comments/${encodeURIComponent(movieTitle)}`);
+        if (response.ok) {
+            const comments = await response.json();
+            
+            if (comments.length === 0) {
+                commentSection.innerHTML = '<p style="color: #aaa; font-style: italic;">No comments yet.</p>';
+                return;
+            }
+
+            comments.forEach(c => {
+                const p = document.createElement('p');
+                p.innerText = c.commentText; // Pulls from the new commentText field
+                p.style.borderBottom = "1px solid #555";
+                p.style.paddingBottom = "5px";
+                p.style.margin = "5px 0";
+                commentSection.appendChild(p);
+            });
+        }
+    } catch (error) {
+        console.error("Error loading comments:", error);
+    }
+}
+
+// Logic for the "Post" button
+if (addCommentBtn) {
+    addCommentBtn.addEventListener('click', async () => {
+        const text = commentInput.value;
+        if (!text) return alert("Please write a comment first!");
+
+        const currentMovie = modaltitle.innerText; 
+
+        try {
+            // Updated URL to point to interactions
+            const response = await fetch('/api/interactions/comment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'user-role': userRole 
+                },
+                body: JSON.stringify({
+                    movieTitle: currentMovie,
+                    commentText: text
+                })
+            });
+
+            if (response.ok) {
+                commentInput.value = ''; 
+                loadComments(currentMovie); 
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error("Error posting comment:", error);
         }
     });
 }
