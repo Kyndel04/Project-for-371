@@ -47,6 +47,10 @@ async function validateForm(event) {
 
         // 4. Handle the server's response
         if (response.ok) {
+            const data = await response.json();
+
+            sessionStorage.setItem('userRole', data.role);
+
             alert("Login successful!");
             window.location.href = "Gallery.html"; // Redirects them to the movies
         } else {
