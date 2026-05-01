@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Interaction = require('../models/Interactions');
+const { connectToDB } = require('../db');
+
 
 //Route to handle the user interaction for likes an dislikes
 router.post('/', async (req, res) => {

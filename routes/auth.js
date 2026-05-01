@@ -3,6 +3,9 @@ const express = require('express');
 const router = express.Router();
 const crypto = require('crypto');
 const User = require('../models/Users');
+const { connectToDB } = require('../db');
+
+
 
 router.post('/login', async (req, res) => {
     try {

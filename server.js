@@ -3,6 +3,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const { connectToDB } = require('./db'); // Pulls the function from your file
+connectToDB(); // Actually runs the connection!
 
 const app = express();
 
@@ -16,10 +18,6 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/movies", require("./routes/movies"));
 app.use("/api/interactions", require("./routes/interactions"));
 
-// MongoDB connection
-mongoose.connect("mongodb://127.0.0.1:27017/watchmovies")
-.then(() => console.log("MongoDB Connected"))
-.catch(err => console.log(err));
 
 // Start server
 app.listen(3000, () => {

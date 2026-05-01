@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Movie = require('../models/Movies');
+const { connectToDB } = require('../db');
+
 
 // GET ROUTE: Anyone can view the movies
 router.get('/', async (req, res) => {

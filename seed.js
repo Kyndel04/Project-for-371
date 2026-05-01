@@ -1,14 +1,13 @@
+global.crypto = require('crypto');
+
 const mongoose = require('mongoose');
 const User = require('./models/Users'); // Points to the User.js model we created earlier
-
-// Connect to MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/watchmovies")
-    .then(() => console.log("Connected to MongoDB for seeding"))
-    .catch(err => console.log(err));
+const { connectToDB } = require('./db');
 
 const seedUsers = async () => {
     try {
         // Clear out existing users to prevent duplicates during testing
+        await connectToDB();
         await User.deleteMany({}); 
 
         // Array of users to automatically put in the database
