@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const crypto = require('crypto');
+global.crypto = require('crypto');
 
 const userSchema = new mongoose.Schema({
     fullName: { type: String, required: true },
